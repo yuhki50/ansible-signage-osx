@@ -1,0 +1,15 @@
+---
+- name: "ホスト名を変更"
+  become: yes
+  command: scutil --set {{ item.name }} {{ item.value }}
+  when: signageosx_hostname != "" and signageosx_hostname != ansible_hostname
+  with_items:
+    - name: ComputerName
+      value: "{{ signageosx_hostname }}"
+
+    - name: LocalHostName
+      value: "{{ signageosx_hostname }}"
+
+    - name: HostName
+      value: "{{ signageosx_hostname }}.local"
+

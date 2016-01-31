@@ -1,0 +1,43 @@
+---
+- name: homebrewをアップデート
+  homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: homebrewで各種パッケージをインストール
+  homebrew:
+    name: "{{ item }}"
+  with_items:
+    - ansible
+    - jq
+    - md5sha1sum
+    - mosh
+    - pwgen
+    - sipcalc
+    - tmux
+    - tree
+    - watch
+
+- name: homebrew caskで各種パッケージをインストール
+  homebrew_cask:
+    name: "{{ item }}"
+  with_items:
+    - google-chrome
+    - java
+    - nmap
+    #- teamviewer  # TeamViewer10をインストールするためコメントアウト
+    - wireshark
+  environment:
+    HOMEBREW_CASK_OPTS: --appdir=/Applications
+
+# TeamViewer10をインストールするためのタスク
+- name: TeamViewer10をインストールすためTapする
+  homebrew_tap:
+    name: yuhki50/formulae
+
+- name: homebrew caskでTeamViewer10をインストール
+  homebrew_cask:
+    name: teamviewer10
+  environment:
+    HOMEBREW_CASK_OPTS: --appdir=/Applications
+

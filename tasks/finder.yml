@@ -1,0 +1,14 @@
+---
+- name: Finderで新規ウィンドウでホームディレクトリを開く
+  osx_defaults:
+    domain: com.apple.finder
+    key: NewWindowTarget
+    type: string
+    value: "PfHm"
+
+- name: Finderで新規ウィンドウでホームディレクトリを開く2
+  osx_defaults:
+    domain: com.apple.finder
+    key: NewWindowTargetPath
+    type: string
+    value: "file:///Users/{{ ansible_user }}/"

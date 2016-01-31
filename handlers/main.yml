@@ -1,2 +1,4 @@
 ---
-# handlers file for signage-osx
+- name: restart dock
+  command: killall Dock
+
