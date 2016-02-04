@@ -1,0 +1,14 @@
+galaxy_info:
+  author: yuhki50
+  description: An Ansible role for setup signage osx machine environment.
+  #issue_tracker_url: http://example.com/issue/tracker
+  license: BSD
+  min_ansible_version: 2.0
+  platforms:
+    - name: Darwin
+      versions:
+        - 10.10
+        - 10.11
+  galaxy_tags:
+    - system
+dependencies: []

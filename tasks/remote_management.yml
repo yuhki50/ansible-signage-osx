@@ -1,0 +1,37 @@
+---
+- name: リモートログインの設定
+  become: yes
+  command: systemsetup -f -setremotelogin on
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: リモートマネジメントのVNC設定  # https://support.apple.com/ja-jp/HT201710
+  become: yes
+  command: /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+    -configure
+    -clientopts
+      -setmenuextra -menuextra yes
+      -setdirlogins -dirlogins yes
+      -setreqperm -reqperm no
+      -setvnclegacy -vnclegacy yes
+      -setvncpw -vncpw {{ ansible_become_pass }}
+      -setwbem -wbem no
+  changed_when: False
+
+- name: リモートマネジメントの全てのアクセスを許可  # https://support.apple.com/ja-jp/HT201710
+  become: yes
+  command: /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+    -configure
+    -allowAccessFor -allUsers
+    -privs -all
+  changed_when: False
+
+- name: リモートマネジメントを有効化  # https://support.apple.com/ja-jp/HT201710
+  become: yes
+  command: /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+    -activate
+    -restart
+      -agent
+      -console
+      -menu
+  changed_when: False
+

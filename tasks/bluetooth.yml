@@ -1,0 +1,33 @@
+---
+- name: Bluetoothをオフにする
+  become: yes
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.Bluetooth
+    key: ControllerPowerState
+    type: bool
+    value: "false"
+
+- name: Bluetoothキーボードの自動検索をオフにする
+  become: yes
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.Bluetooth
+    key: BluetoothAutoSeekKeyboard
+    type: bool
+    value: "false"
+
+- name: Bluetoothポインティングデバイスの自動検索をオフにする
+  become: yes
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.Bluetooth
+    key: BluetoothAutoSeekPointingDevice
+    type: bool
+    value: "false"
+
+- name: Bluetoothでのスリープ復帰をオフにする
+  become: yes
+  osx_defaults:
+    domain: ~/Library/Preferences/ByHost/com.apple.Bluetooth
+    key: RemoteWakeEnabled
+    type: bool
+    value: "false"
+

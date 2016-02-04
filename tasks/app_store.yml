@@ -1,0 +1,23 @@
+---
+- name: 提供元不明のアプリケーションを許可する
+  become: yes
+  command: spctl --master-disable
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: App Storeのアップデート一覧を取得
+  command: softwareupdate --list
+  register: status_softwareupdate
+  changed_when: False
+
+- name: App Storeのアップデート
+  command: softwareupdate --install --all
+  when: status_softwareupdate.stderr.count("No new software available.") == 0
+
+- name: App Storeのソフトウェアアップデート通知を停止
+  become: yes
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: AutomaticCheckEnabled
+    type: bool
+    value: "false"
+

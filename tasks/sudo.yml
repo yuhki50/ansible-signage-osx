@@ -1,0 +1,8 @@
+---
+- name: パスワードなしでsudoできるようにする
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: ^%staff.*
+    line: "%staff ALL=(ALL) NOPASSWD: ALL"
+
