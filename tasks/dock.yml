@@ -1,0 +1,28 @@
+---
+# 設定済みのファイルを配置するので、最初に実行
+- name: Dockアイコンを設定
+  copy:
+    src: dock/com.apple.dock.plist
+    dest: ~/Library/Preferences
+    mode: 0600
+    owner: "{{ ansible_user }}"
+    group: staff
+  notify: restart dock
+  changed_when: false
+
+#- name: Dockを自動的に隠す
+#  notify: restart dock
+#  osx_defaults:
+#    domain: com.apple.dock
+#    key: autohide
+#    type: bool
+#    value: "true"
+
+#- name: Dockへの項目の追加を禁止する
+#  notify: restart dock
+#  osx_defaults:
+#    domain: com.apple.dock
+#    key: contents-immutable
+#    type: bool
+#    value: "true"
+

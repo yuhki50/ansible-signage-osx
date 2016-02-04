@@ -1,0 +1,49 @@
+# FIXME changedを握りつぶしているので、修正すること
+---
+- name: スクリーンセーバーの起動をストップさせる
+  osx_defaults:
+    domain: ~/Library/Preferences/ByHost/com.apple.screensaver
+    key: idleTime
+    type: int
+    value: 0
+
+- name: 自動スリープを止める
+  become: yes
+  command: pmset -a sleep 0
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: ディスプレイのスリープを止める
+  become: yes
+  command: pmset -a displaysleep 0
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: ハードディスクをスリープを止める
+  become: yes
+  command: pmset -a disksleep 0
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: ネットワークアクセスによるスリープの解除 ON
+  become: yes
+  command: pmset -a womp 1
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: 停電後に自動的に起動 ON
+  become: yes
+  command: pmset -a autorestart 1
+  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: Power Napをオフにする
+  become: yes
+  command: pmset -a darkwakes 0
+  changed_when: False  # FIXME 値の変化を検出すること
+
+#- name: 自動起動と自動終了を止める
+#  become: yes
+#  command: pmset repeat cancel
+#  changed_when: False  # FIXME 値の変化を検出すること
+
+- name: 毎日8時起動、7時終了
+  become: yes
+  command: pmset repeat poweron MTWRFSU 8:00:00 shutdown MTWRFSU 7:00:00
+  changed_when: False  # FIXME 値の変化を検出すること
+

@@ -1,0 +1,15 @@
+---
+- include: sudo.yml  # 最初に実行すること
+- include: app_store.yml
+- include: auto_login.yml
+- include: bluetooth.yml
+- include: dock.yml
+- include: finder.yml
+- include: firewall.yml
+- include: homebrew.yml
+- include: hostname.yml
+- include: monit.yml
+- include: power.yml
+- include: remote_management.yml
+- include: restore_window.yml
+

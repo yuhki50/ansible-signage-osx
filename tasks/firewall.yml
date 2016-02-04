@@ -1,0 +1,12 @@
+# file: firewall.yml
+---
+- name: ファイアウォールの状態を確認
+  command: /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+  register: state_firewall
+  changed_when: False
+
+- name: ファイアウォールを有効化
+  become: yes
+  command: /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+  when: state_firewall.stdout.count("disabled") > 0
+

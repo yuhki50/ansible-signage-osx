@@ -1,0 +1,9 @@
+---
+- name: Monit管理画面のショートカットを作成
+  copy:
+    src: monit/Monit.webloc
+    dest: ~/Desktop
+    mode: 0644
+    owner: "{{ ansible_user }}"
+    group: staff
+

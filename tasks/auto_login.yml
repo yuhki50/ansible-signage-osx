@@ -1,0 +1,14 @@
+---
+- name: homebrew tapでxfreebird/utilsを追加
+  homebrew_tap:
+    tap: xfreebird/utils
+
+- name: kcpasswordをインストール
+  homebrew:
+    name: kcpassword
+
+- name: 自動ログインを設定
+  become: yes
+  command: enable_autologin {{ ansible_ssh_user }} {{ ansible_become_pass }}
+  changed_when: false
+
