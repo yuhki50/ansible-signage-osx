@@ -16,6 +16,9 @@ Role Variables
 --------------
 
 * `signageosx_hostname`: Defaults to not set.
+* `signageosx_startuptime_hour`: Defaults to 8:00:00
+* `signageosx_shutdowntime_hour`: Defaults to 7:00:00
+
 
 Example Playbook
 ----------------

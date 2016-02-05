@@ -1,3 +1,5 @@
 ---
 signageosx_hostname: ""
+signageosx_startuptime_hour: 8:00:00
+signageosx_shutdowntime_hour: 7:00:00
 
