@@ -44,6 +44,6 @@
 
 - name: 毎日8時起動、7時終了
   become: yes
-  command: pmset repeat poweron MTWRFSU 8:00:00 shutdown MTWRFSU 7:00:00
+  command: "pmset repeat poweron MTWRFSU {{ signageosx_startuptime_hour }} shutdown MTWRFSU {{ signageosx_shutdowntime_hour }}"
   changed_when: False  # FIXME 値の変化を検出すること
 
