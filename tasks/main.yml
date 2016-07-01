@@ -3,6 +3,7 @@
 - include: app_store.yml
 - include: auto_login.yml
 - include: bluetooth.yml
+- include: crashreporter.yml
 - include: dock.yml
 - include: finder.yml
 - include: firewall.yml

@@ -1,0 +1,8 @@
+---
+- name: CrashReporterを無効にする
+  osx_defaults:
+    domain: com.apple.CrashReporter
+    key: DialogType
+    type: string
+    value: none
+
